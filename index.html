@@ -21,7 +21,9 @@ a{color:inherit}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .demo{position:sticky;top:0;z-index:50;background:var(--gold);color:var(--on-gold);text-align:center;font-weight:600;font-size:13px;padding:8px 12px;letter-spacing:.02em}
 .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
-.hero{background:linear-gradient(180deg,#171309,var(--bg));border-bottom:1px solid var(--line)}
+.hero{background:linear-gradient(0deg,rgba(11,11,11,.85) 0%,rgba(11,11,11,0) 20%),linear-gradient(90deg,rgba(20,14,6,.86) 0%,rgba(20,14,6,.78) 52%,rgba(20,14,6,.2) 78%,rgba(20,14,6,.05) 100%),url(hero.jpg) center/cover no-repeat,linear-gradient(180deg,#171309,var(--bg));border-bottom:1px solid var(--line)}
+.hero h1,.hero p,.hero .brand{text-shadow:0 2px 12px rgba(0,0,0,.45)}
+@media (max-width:640px){.hero{background:linear-gradient(180deg,rgba(20,14,6,.78) 0%,rgba(20,14,6,.7) 100%),url(hero.jpg) center/cover no-repeat,linear-gradient(180deg,#171309,var(--bg))}}
 .hero .wrap{padding-top:56px;padding-bottom:96px}
 .brand{font-family:Oswald,sans-serif;font-weight:500;font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:72px}
 .hero h1{font-size:clamp(44px,8vw,84px);font-weight:700;max-width:11em;margin-bottom:20px}
@@ -95,6 +97,7 @@ input,select{border-radius:14px}
 .mc{border-radius:20px;overflow:hidden}
 .ok{border-radius:14px}
 .prices li{padding:14px 18px;margin-bottom:8px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.hero p{color:#E8E0CE}
 </style>
 </head>
 <body>
