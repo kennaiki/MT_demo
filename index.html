@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Барбершоп «Стрижки от kennai» — стрижки и борода в центре города</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta name="description" content="Мужские стрижки, уход за бородой и бритьё опасной бритвой. Запись онлайн.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0B0B;--card:#141414;--ink:#F2EBDD;--muted:#A39B88;--line:#2C2820;--gold:#C9A24B;--gold-h:#DDB95F;--on-gold:#0B0B0B}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:17px}
+h1,h2,h3{font-family:Oswald,Impact,sans-serif;text-transform:uppercase;letter-spacing:.03em;line-height:1.05}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.demo{position:sticky;top:0;z-index:50;background:var(--gold);color:var(--on-gold);text-align:center;font-weight:600;font-size:13px;padding:8px 12px;letter-spacing:.02em}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+.hero{background:linear-gradient(180deg,#171309,var(--bg));border-bottom:1px solid var(--line)}
+.hero .wrap{padding-top:56px;padding-bottom:96px}
+.brand{font-family:Oswald,sans-serif;font-weight:500;font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:72px}
+.hero h1{font-size:clamp(44px,8vw,84px);font-weight:700;max-width:11em;margin-bottom:20px}
+.hero p{max-width:32em;margin-bottom:32px;color:var(--muted);font-size:19px}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--gold);color:var(--on-gold);text-decoration:none;border:0;font:inherit;font-weight:700;letter-spacing:.02em;padding:14px 28px;min-height:48px;cursor:pointer}
+.btn:hover{background:var(--gold-h)}
+.btn:disabled{opacity:.5;cursor:default}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+h2{font-size:clamp(30px,5vw,44px);margin-bottom:32px}
+h2::after{content:"";display:block;width:56px;height:3px;background:var(--gold);margin-top:14px}
+.prices{list-style:none;padding:0;max-width:760px}
+.prices li{display:flex;align-items:baseline;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.prices .name{font-weight:600}
+.prices .desc{color:var(--muted);font-size:15px;display:block;font-weight:400}
+.prices .dots{flex:1}
+.prices .cost{font-family:Oswald,sans-serif;font-size:24px;font-weight:700;color:var(--gold);white-space:nowrap}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px}
+.info h3{font-size:20px;color:var(--gold);margin-bottom:8px}
+.info td{padding:2px 24px 2px 0}
+form{display:grid;gap:16px;max-width:460px}
+label{font-weight:600;font-size:15px;display:grid;gap:6px}
+input,select{font:inherit;padding:14px;min-height:48px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:0}
+input:focus,select:focus{border-color:var(--gold)}
+.ok{display:none;margin-top:16px;padding:16px;border:1px solid var(--gold);background:var(--card);max-width:460px}
+.cal{border:1px solid var(--line);background:var(--card);padding:12px}
+.cal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-weight:600}
+.cal-h button{font:inherit;font-size:22px;color:var(--ink);background:none;border:0;cursor:pointer;padding:2px 12px}
+.cal-h button:disabled{opacity:.25;cursor:default}
+.cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal-w{color:var(--muted);font-size:13px;padding-bottom:4px}
+.cal-d{font:inherit;font-weight:600;color:var(--ink);background:none;border:0;padding:12px 0;cursor:pointer}
+.cal-d:hover:not(:disabled){background:#1F1B12}
+.cal-d:disabled{color:var(--muted);opacity:.35;cursor:default;font-weight:400}
+.cal-t{display:block;margin:8px auto 0;font:inherit;font-size:14px;color:var(--muted);background:none;border:0;cursor:pointer;padding:4px 12px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:14px;color:var(--muted)}
+.consent input{flex:none;width:20px;height:20px;min-height:0;padding:0;margin-top:3px;accent-color:var(--gold)}
+.consent a{color:var(--gold)}
+.mwrap{position:relative}
+.masters{position:relative;display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:28px calc(50% - 135px);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.masters::-webkit-scrollbar{display:none}
+.marr{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border:1px solid var(--gold);background:var(--bg);color:var(--gold);font-size:22px;line-height:1;cursor:pointer}
+.marr.l{left:0}.marr.r{right:0}
+.mc{flex:0 0 270px;scroll-snap-align:center;border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;transform:scale(1);transition:transform .25s,border-color .25s}
+.mc.center{transform:scale(1.05);border-color:var(--gold)}
+.ph{position:relative;aspect-ratio:4/5;background:#1F1B12;display:grid;place-items:center;overflow:hidden}
+.ph b{font-family:Oswald,sans-serif;font-size:56px;font-weight:700;color:var(--gold);opacity:.6}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mi{padding:14px 16px 16px;display:grid;gap:4px}
+.mi h3{font-size:22px}
+.mi small{color:var(--muted);font-size:14px}
+.mi .btn{margin-top:10px}
+.field{display:grid;gap:8px}
+.lbl{font-weight:600;font-size:15px}
+.slot{font:inherit;font-weight:600;color:var(--ink);background:var(--card);border:1px solid var(--line);cursor:pointer;padding:10px 0;min-height:48px}
+.slot:hover{border-color:var(--gold)}
+.cal-d.on,.slot.on{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
+.picked{font-weight:600;margin:4px 0}
+.grp{font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);margin:16px 0 8px}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}
+.slot:disabled{opacity:.4;text-decoration:line-through;cursor:not-allowed}
+footer{padding:32px 0;color:var(--muted);font-size:14px}
+footer a{color:var(--muted)}
+@media (max-width:640px){.hero .wrap{padding-bottom:64px}.brand{margin-bottom:48px}}
+/* === Скругления: единый стиль форм и кнопок === */
+.btn,.btn.ghost,.links a.btn,.adm{border-radius:999px}
+input,select{border-radius:14px}
+.consent input{border-radius:6px}
+.cal{border-radius:18px}
+.cal-d,.day,.slot{border-radius:12px}
+.marr{border-radius:50%}
+.mc{border-radius:20px}
+.ok{border-radius:14px}
+.prices li{padding:14px 18px;margin-bottom:8px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+</style>
+</head>
+<body>
+<div class="demo" role="note">ДЕМО · Пример сайта для «Мужская Территория». Заявки не отправляются, занятое время условное.</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="brand" id="brand"></div>
+      <h1>Стрижки и борода по записи</h1>
+      <p>Выберите услугу, мастера, день и время прямо на сайте.</p>
+      <a class="btn" href="#zapis">Записаться</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="mastera">
+    <div class="wrap">
+      <h2>Наши мастера</h2>
+      <div class="mwrap">
+        <button type="button" class="marr l" id="mprev" aria-label="Предыдущий мастер">‹</button>
+        <div class="masters" id="masters"></div>
+        <button type="button" class="marr r" id="mnext" aria-label="Следующий мастер">›</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="uslugi">
+    <div class="wrap">
+      <h2>Услуги и цены</h2>
+      <ul class="prices" id="prices"></ul>
+    </div>
+  </section>
+
+  <section id="kontakty">
+    <div class="wrap info">
+      <div>
+        <h3>Адрес</h3>
+        <p id="addr"></p>
+      </div>
+      <div>
+        <h3>Часы работы</h3>
+        <table id="hrs"></table>
+      </div>
+      <div>
+        <h3>Связь</h3>
+        <p><a id="phone" href="#"></a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="zapis">
+    <div class="wrap">
+      <h2>Запись</h2>
+      <form id="f">
+        <label>Имя<input name="name" required autocomplete="given-name" maxlength="40" placeholder="Как к вам обращаться"></label>
+        <label>Телефон<input name="phone" type="tel" inputmode="tel" required autocomplete="tel" maxlength="18" placeholder="+7 (___) ___-__-__" pattern="\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}" title="Введите номер полностью: +7 (999) 123-45-67"></label>
+        <label>Услуга<select name="service" id="svc"></select></label>
+        <label>Мастер<select name="master" id="master"></select></label>
+        <div class="field"><span class="lbl">День</span><div class="cal" id="days"></div></div>
+        <div class="field"><span class="lbl">Время</span><div id="times" aria-live="polite"></div></div>
+        <label class="consent"><input type="checkbox" name="consent" required><span>Я даю <a href="soglasie.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> (имя и телефон) для записи на услугу</span></label>
+        <button class="btn" type="submit">Отправить заявку</button>
+      </form>
+      <p class="ok" id="ok" role="status">Это демо: заявка никуда не отправлена. В рабочей версии она придёт владельцу, а выбранное время станет занятым.</p>
+      <p class="ok" id="err" role="alert">Не удалось отправить заявку. Позвоните нам по телефону, мы запишем вас сразу.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="fbrand"></span>. Демо-версия: пример сайта, не официальный сайт заведения. <a href="privacy.html">Политика конфиденциальности</a> · <a href="soglasie.html">Согласие на обработку данных</a>
+  </div>
+</footer>
+
+<script>
+var DAYKEYS = {'Пн':1,'Вт':2,'Ср':3,'Чт':4,'Пт':5,'Сб':6,'Вс':0};
+// "10:00-21:00" -> [10, 21]; пустая строка = выходной
+function parseHours(o){
+  var r = {};
+  Object.keys(o).forEach(function(k){
+    var m = /^(\d{1,2}):(\d{2})-(\d{1,2}):(\d{2})$/.exec(String(o[k]).trim());
+    if (m && k in DAYKEYS) r[DAYKEYS[k]] = [+m[1] + m[2] / 60, +m[3] + m[4] / 60];
+  });
+  return r;
+}
+
+function start(CFG){
+var AHEAD = CFG.ahead, SHOP = CFG.shop;
+var SERVICES = CFG.services.map(function(s){ return {n: s.name, d: s.desc, m: s.minutes, p: s.price}; });
+var MASTERS = CFG.masters.map(function(m){ return {id: m.id, name: m.name, exp: m.exp, h: parseHours(m.hours)}; })
+  .filter(function(m){ return Object.keys(m.h).length; });
+var DUR = {}; SERVICES.forEach(function(s){ DUR[s.n] = s.m; });
+var brandText = 'Барбершоп «' + SHOP.name + '»';
+document.title = brandText + ' — стрижки и борода';
+document.getElementById('brand').textContent = brandText;
+document.getElementById('fbrand').textContent = brandText;
+var addrEl = document.getElementById('addr');
+addrEl.textContent = SHOP.address; addrEl.appendChild(document.createElement('br')); addrEl.appendChild(document.createTextNode(SHOP.note));
+var hrsEl = document.getElementById('hrs');
+SHOP.hours.forEach(function(r){ var tr = document.createElement('tr'); [r[0], r[1]].forEach(function(x){ var td = document.createElement('td'); td.textContent = x; tr.appendChild(td); }); hrsEl.appendChild(tr); });
+var phoneLink = document.getElementById('phone'); phoneLink.textContent = SHOP.phone; if (/X/i.test(SHOP.phone)) phoneLink.removeAttribute('href'); else phoneLink.href = 'tel:' + SHOP.phone.replace(/[^\d+]/g, '');
+
+function el(t, c, x){ var n = document.createElement(t); if (c) n.className = c; if (x != null) n.textContent = x; return n; }
+function money(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0₽'; }
+function p2(n){ return ('0' + n).slice(-2); }
+function hm(m){ return p2(Math.floor(m / 60)) + ':' + (m % 60 ? '30' : '00'); }
+function cells(start, dur){ var o = []; for (var m = start; m < start + dur; m += 30) o.push(hm(m)); return o; }
+function isoOf(d){ return d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate()); }
+function fullDate(d){ return d.toLocaleDateString('ru-RU', {weekday:'long', day:'numeric', month:'long'}); }
+
+var form = document.getElementById('f');
+var nameEl = form.elements['name'], phoneEl = form.elements['phone'];
+var svcEl = document.getElementById('svc'), masterEl = document.getElementById('master');
+var busy = {}, selDate = null, selTime = null, DAYS = [], byIso = {}, WEEKS = [], calOpen = false, weekIdx = 0, curMaster = MASTERS[0];
+
+// Цены и список услуг из одного источника
+var pl = document.getElementById('prices');
+SERVICES.forEach(function(s){
+  var li = el('li'), nm = el('span', 'name', s.n);
+  nm.appendChild(el('span', 'desc', (s.d ? s.d + ', ' : '') + s.m + ' мин'));
+  li.appendChild(nm); li.appendChild(el('span', 'dots')); li.appendChild(el('span', 'cost', money(s.p)));
+  pl.appendChild(li);
+  var o = el('option', '', s.n + ' — ' + money(s.p) + ', ' + s.m + ' мин'); o.value = s.n; svcEl.appendChild(o);
+});
+svcEl.value = SERVICES[0].n;
+
+// Карточки мастеров (5 копий для бесконечной карусели) и выбор мастера в форме
+var ml = document.getElementById('masters'), N = MASTERS.length;
+MASTERS.forEach(function(m){
+  var o = el('option', '', m.name + (m.exp ? ', стаж ' + m.exp : '')); o.value = m.id; masterEl.appendChild(o);
+});
+function makeCard(m, hidden){
+  var c = el('div', 'mc'), ph = el('div', 'ph');
+  ph.appendChild(el('b', '', m.name.split(' ').map(function(w){ return w.charAt(0); }).join('')));
+  var img = document.createElement('img'); img.src = m.id + '.jpg'; img.alt = 'Мастер ' + m.name; img.loading = 'lazy';
+  img.onerror = function(){ this.remove(); }; ph.appendChild(img);
+  var mi = el('div', 'mi'); mi.appendChild(el('h3', '', m.name)); if (m.exp) mi.appendChild(el('small', '', 'Стаж: ' + m.exp));
+  var b = el('button', 'btn', 'Записаться'); b.type = 'button';
+  b.onclick = function(){ masterEl.value = m.id; setMaster(m); document.getElementById('zapis').scrollIntoView({behavior:'smooth'}); };
+  if (hidden){ c.setAttribute('aria-hidden', 'true'); b.tabIndex = -1; }
+  mi.appendChild(b); c.appendChild(ph); c.appendChild(mi);
+  return c;
+}
+for (var cp = 0; cp < 5; cp++) MASTERS.forEach(function(m){ ml.appendChild(makeCard(m, cp !== 2)); });
+masterEl.value = MASTERS[0].id;
+
+// Карусель: ближайшая к центру карточка увеличивается, лента бесконечная
+function centerIdx(){
+  var r = ml.getBoundingClientRect(), cx = r.left + r.width / 2, idx = 0, bd = 1e9;
+  [].forEach.call(ml.children, function(c, i){
+    var b = c.getBoundingClientRect(), d = Math.abs(b.left + b.width / 2 - cx);
+    if (d < bd){ bd = d; idx = i; }
+  });
+  return idx;
+}
+function markCenter(){
+  var idx = centerIdx();
+  [].forEach.call(ml.children, function(c, i){ c.classList.toggle('center', i === idx); });
+}
+function recenter(){ // когда лента уехала из средней копии, незаметно возвращаем её
+  var set = Math.floor(centerIdx() / N);
+  if (set !== 2){
+    var w = ml.children[N].offsetLeft - ml.children[0].offsetLeft;
+    ml.style.scrollSnapType = 'none';
+    ml.scrollLeft += (2 - set) * w;
+    requestAnimationFrame(function(){ ml.style.scrollSnapType = ''; markCenter(); });
+  }
+}
+var mraf, mt;
+ml.addEventListener('scroll', function(){
+  cancelAnimationFrame(mraf); mraf = requestAnimationFrame(markCenter);
+  clearTimeout(mt); mt = setTimeout(recenter, 120);
+});
+window.addEventListener('resize', markCenter);
+function mstep(dir){ ml.scrollBy({left: dir * (ml.children[0].offsetWidth + 18), behavior: 'smooth'}); }
+document.getElementById('mprev').onclick = function(){ mstep(-1); };
+document.getElementById('mnext').onclick = function(){ mstep(1); };
+// Старт: вторая карточка по центру
+var startCard = ml.children[2 * N + 1];
+ml.scrollLeft = startCard.offsetLeft + startCard.offsetWidth / 2 - ml.clientWidth / 2;
+markCenter();
+
+nameEl.addEventListener('input', function(){
+  var pos = this.selectionStart;
+  this.value = this.value.replace(/[^A-Za-zА-Яа-яЁё\s-]/g, '')
+    .replace(/(^|[\s-])([a-zа-яё])/g, function(m, a, b){ return a + b.toUpperCase(); });
+  this.setSelectionRange(pos, pos);
+});
+function fmtPhone(v){
+  var d = v.replace(/\D/g, '');
+  if (d[0] === '7' || d[0] === '8') d = d.slice(1);
+  if (d.length > 10 && (d[0] === '7' || d[0] === '8')) d = d.slice(1);
+  d = d.slice(0, 10);
+  var o = '+7 (' + d.slice(0, 3);
+  if (d.length > 3) o += ') ' + d.slice(3, 6);
+  if (d.length > 6) o += '-' + d.slice(6, 8);
+  if (d.length > 8) o += '-' + d.slice(8, 10);
+  return o;
+}
+phoneEl.addEventListener('focus', function(){ if (!this.value) this.value = '+7 ('; });
+phoneEl.addEventListener('input', function(){ this.value = fmtPhone(this.value); });
+phoneEl.addEventListener('blur', function(){ if (fmtPhone(this.value) === '+7 (') this.value = ''; });
+
+// Календарь
+var base = new Date(); base = new Date(base.getFullYear(), base.getMonth(), base.getDate());
+function dayAt(k){ return new Date(base.getFullYear(), base.getMonth(), base.getDate() + k); }
+var MONTHS = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+(function(){
+  var last = dayAt(AHEAD - 1), en = new Date(last.getFullYear(), last.getMonth(), last.getDate() + (7 - last.getDay()) % 7);
+  for (var d = dayAt(-((base.getDay() + 6) % 7)); d <= en; d = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7)){
+    var w = []; for (var k = 0; k < 7; k++) w.push(new Date(d.getFullYear(), d.getMonth(), d.getDate() + k));
+    WEEKS.push(w);
+  }
+})();
+function buildDays(){
+  DAYS = []; byIso = {}; var now = new Date();
+  for (var k = 0; k < AHEAD; k++){
+    var d = dayAt(k), h = curMaster.h[d.getDay()];
+    if (!h) continue;
+    if (k === 0 && now.getHours() * 60 + now.getMinutes() + 60 > h[1] * 60 - 30) continue;
+    var x = {d: d, k: k, iso: isoOf(d)}; DAYS.push(x); byIso[x.iso] = x;
+  }
+}
+function renderDays(){
+  var box = document.getElementById('days'); box.innerHTML = '';
+  var rows = calOpen ? WEEKS : [WEEKS[weekIdx]], ms = [];
+  rows.forEach(function(w){ w.forEach(function(d){ if (ms.indexOf(d.getMonth()) < 0) ms.push(d.getMonth()); }); });
+  var label = ms.map(function(m){ return MONTHS[m]; }).join(' – ');
+  label = label.charAt(0).toUpperCase() + label.slice(1) + ' ' + rows[rows.length - 1][6].getFullYear();
+  var h = el('div', 'cal-h'), pv = el('button', '', '‹'), nx = el('button', '', '›');
+  pv.type = nx.type = 'button';
+  pv.setAttribute('aria-label', 'Предыдущая неделя'); nx.setAttribute('aria-label', 'Следующая неделя');
+  pv.disabled = calOpen || weekIdx === 0; nx.disabled = calOpen || weekIdx === WEEKS.length - 1;
+  pv.onclick = function(){ weekIdx--; renderDays(); };
+  nx.onclick = function(){ weekIdx++; renderDays(); };
+  h.appendChild(pv); h.appendChild(el('span', '', label)); h.appendChild(nx);
+  var g = el('div', 'cal-g');
+  ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'].forEach(function(n){ g.appendChild(el('span', 'cal-w', n)); });
+  rows.forEach(function(w){ w.forEach(function(d){
+    var x = byIso[isoOf(d)], b = el('button', 'cal-d' + (x && selDate === x ? ' on' : ''), d.getDate());
+    b.type = 'button'; b.disabled = !x; b.setAttribute('aria-label', fullDate(d));
+    if (x) b.onclick = function(){ pickDay(x); };
+    g.appendChild(b);
+  }); });
+  var t = el('button', 'cal-t', calOpen ? 'Свернуть ▲' : 'Развернуть ▼');
+  t.type = 'button'; t.onclick = function(){ calOpen = !calOpen; renderDays(); };
+  box.appendChild(h); box.appendChild(g); box.appendChild(t);
+}
+function busyKey(x){ return curMaster.id + '|' + x.iso; }
+function fakeBusy(mid, iso){
+  var seed = 0, str = mid + iso, a = [];
+  for (var i = 0; i < str.length; i++) seed = (seed * 31 + str.charCodeAt(i)) >>> 0;
+  for (var m = 11 * 60; m < 21 * 60; m += 30){ seed = (seed * 1103515245 + 12345) >>> 0; if ((seed >>> 16) % 100 < 30) a.push(hm(m)); }
+  return a;
+}
+function loadBusy(x){
+  var key = busyKey(x), mid = curMaster.id;
+  if (Array.isArray(busy[key])) return;
+  busy[key] = fakeBusy(mid, x.iso); // демо: занятое время условное
+  if (selDate === x && curMaster.id === mid) renderTimes();
+}
+function pickDay(x){
+  selDate = x; selTime = null;
+  WEEKS.forEach(function(w, i){ if (w.some(function(d){ return isoOf(d) === x.iso; })) weekIdx = i; });
+  renderDays(); renderTimes(); loadBusy(x);
+}
+function setMaster(m){
+  curMaster = m; buildDays();
+  pickDay((selDate && byIso[selDate.iso]) || DAYS[0]);
+}
+
+function renderTimes(){
+  var box = document.getElementById('times'), b = busy[busyKey(selDate)];
+  if (!b){ box.textContent = 'Загружаем свободное время…'; return; }
+  if (b === 'err'){ box.textContent = 'Не удалось загрузить расписание. Позвоните нам.'; return; }
+  var dur = DUR[svcEl.value], h = curMaster.h[selDate.d.getDay()], now = new Date();
+  box.innerHTML = '';
+  var pk = el('p', 'picked', curMaster.name + ', ' + fullDate(selDate.d)); box.appendChild(pk);
+  var any = false;
+  [['Утро', 0, 720], ['День', 720, 1020], ['Вечер', 1020, 1440]].forEach(function(g){
+    var grid = el('div', 'slots');
+    for (var m = h[0] * 60; m < h[1] * 60; m += 30){
+      if (m < g[1] || m >= g[2]) continue;
+      var t = hm(m), past = selDate.k === 0 && m < now.getHours() * 60 + now.getMinutes() + 60;
+      var free = !past && m + dur <= h[1] * 60 && cells(m, dur).every(function(c){ return b.indexOf(c) < 0; });
+      if (!free) continue;
+      any = true;
+      var btn = el('button', 'slot' + (selTime === t ? ' on' : ''), t); btn.type = 'button';
+      btn.onclick = (function(tt){ return function(){ selTime = tt; renderTimes(); }; })(t);
+      grid.appendChild(btn);
+    }
+    if (grid.children.length){ box.appendChild(el('p', 'grp', g[0])); box.appendChild(grid); }
+  });
+  if (!any) box.appendChild(el('p', '', 'На этот день у мастера нет свободного времени. Выберите другой день или другого мастера.'));
+}
+svcEl.addEventListener('change', function(){ selTime = null; renderTimes(); });
+masterEl.addEventListener('change', function(){
+  setMaster(MASTERS.filter(function(m){ return m.id === masterEl.value; })[0]);
+});
+
+function showErr(msg){ var e = document.getElementById('err'); e.textContent = msg; e.style.display = 'block'; }
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+  document.getElementById('err').style.display = 'none';
+  if (!selTime){ showErr('Выберите день и время.'); return; }
+  var btn = form.querySelector('button[type=submit]');
+  btn.disabled = true; btn.textContent = 'Отправляем...';
+  var data = {name: nameEl.value, phone: phoneEl.value, service: svcEl.value, master: curMaster.id,
+    date: selDate.iso, time: selTime, label: fullDate(selDate.d), consent: form.elements['consent'].checked};
+  try {
+    await new Promise(function(res){ setTimeout(res, 500); }); // демо: ничего не отправляем
+    form.style.display = 'none';
+    document.getElementById('ok').style.display = 'block';
+  } catch (err) {
+    showErr(err.message || 'Не удалось отправить заявку. Позвоните нам.');
+    btn.disabled = false; btn.textContent = 'Отправить заявку';
+  }
+});
+setMaster(MASTERS[0]);
+}
+
+function getJson(u){ return fetch(u, {cache: 'no-cache'}).then(function(r){ if (!r.ok) throw new Error(u + ': ' + r.status); return r.json(); }); }
+getJson('config.json')
+  .then(start)
+  .catch(function(e){ console.error(e); document.getElementById('days').textContent = 'Не удалось загрузить настройки сайта. Позвоните нам.'; });
+</script>
+</body>
+</html>

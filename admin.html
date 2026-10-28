@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Админка</title>
+<style>
+:root{--bg:#FAFAFA;--card:#fff;--ink:#111;--muted:#5C5C5C;--line:#E5E5E5;--line2:#D4D4D4;--accent:#1F4FD8;--on-accent:#fff;--red:#C62828;--ok:#1B7A43;--warn:#9A5B00}
+@media (prefers-color-scheme: dark){:root{--bg:#0B0B0C;--card:#141416;--ink:#F2F2F2;--muted:#A3A3A3;--line:#2A2A2D;--line2:#3A3A3E;--accent:#7C9BFF;--on-accent:#0B0B0C;--red:#FF7B72;--ok:#58C488;--warn:#E0A040}}
+*{box-sizing:border-box;margin:0}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;font-size:15px;padding:24px 16px}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto}
+h1{font-size:24px;font-weight:600;letter-spacing:-.02em}
+h2{font-size:18px;font-weight:600;margin:20px 0 8px}
+h3{font-size:15px;font-weight:600;margin-bottom:6px}
+.layout{display:grid;grid-template-columns:200px minmax(0,1fr);grid-template-areas:"top top" "tabs main";column-gap:32px}
+.top{grid-area:top;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.tabs{grid-area:tabs;align-self:start;flex-direction:column;gap:4px;margin:0}
+.tabs button{border:0;background:transparent;color:var(--muted);text-align:left;padding:12px;font-size:15px}
+.tabs button.on{background:var(--ink);color:var(--bg)}
+#pb,#pc{grid-area:main;min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;margin-bottom:12px}
+button{font:inherit;cursor:pointer;border-radius:6px;border:1px solid var(--line2);background:var(--card);color:var(--ink);padding:9px 14px;min-height:44px}
+a.btnlink{display:inline-flex;align-items:center;font:inherit;border-radius:6px;border:1px solid var(--line2);background:var(--card);color:var(--ink);padding:9px 14px;min-height:44px;text-decoration:none}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:500}
+button.danger{background:var(--card);color:var(--red);border-color:var(--red)}
+button:disabled{opacity:.5;cursor:default}
+input,select{font:inherit;padding:9px 10px;min-height:44px;border:1px solid var(--line2);border-radius:6px;background:var(--bg);color:var(--ink);width:100%;min-width:0}
+input:focus,select:focus{border-color:var(--ink)}
+label.f{display:grid;gap:4px;font-size:13px;color:var(--muted)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end}
+.row>*{flex:1 1 140px}
+.row>button{flex:0 0 auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tabs{display:flex}
+.bk{display:grid;grid-template-columns:70px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.bk:first-child{border-top:0}
+.bk .t{font-weight:600;font-size:18px}
+.bk small{color:var(--muted)}
+.badge{display:inline-block;font-size:12px;padding:1px 8px;border-radius:99px;border:1px solid currentColor;margin-left:6px}
+.new{color:var(--warn)}.okb{color:var(--ok)}
+.acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.days{font-weight:600;margin:16px 0 6px;text-transform:capitalize}
+.hours{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;margin-top:8px}
+.msg{margin:8px 0;font-size:14px}.msg.err{color:var(--red)}.msg.good{color:var(--ok)}
+.hint{color:var(--muted);font-size:13px}
+.empty{color:var(--muted);padding:12px 0}
+@media (max-width:760px){.layout{grid-template-columns:1fr;grid-template-areas:"top" "tabs" "main"}.tabs{flex-direction:row;margin-bottom:12px}.bk{grid-template-columns:60px 1fr}.acts{grid-column:1/-1;justify-content:flex-start}}
+/* === Скругления: единый стиль форм и кнопок === */
+button,a.btnlink{border-radius:999px}
+input,select{border-radius:14px}
+.card{border-radius:18px}
+.bk,.bk:first-child{padding:12px 14px;margin-bottom:8px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+
+<div id="login" style="display:none;max-width:360px;margin:60px auto">
+  <h1>Вход в админку</h1>
+  <form id="lf" class="card">
+    <label class="f">Пароль<input id="pw" type="password" autocomplete="current-password" required></label>
+    <p class="msg err" id="lerr"></p>
+    <button class="primary" type="submit" style="width:100%">Войти</button>
+  </form>
+  <p style="text-align:center"><a href="index.html">← Вернуться на сайт</a></p>
+</div>
+
+<div id="app" style="display:none">
+<div class="layout">
+  <div class="top"><h1>Админка</h1><div class="row" style="flex:0 0 auto;gap:8px"><a class="btnlink" href="index.html">На сайт</a><button id="out" type="button">Выйти</button></div></div>
+  <div class="tabs"><button type="button" id="tb" class="on">Записи</button><button type="button" id="tc">Настройки</button></div>
+
+  <div id="pb">
+    <div class="card">
+      <h3>Добавить запись вручную</h3>
+      <p class="hint">Для звонков и тех, кто пришёл сам. Время сразу станет занятым на сайте. Так же можно закрыть время мастера.</p>
+      <form id="mf" class="row" style="margin-top:8px"></form>
+      <p class="msg" id="mmsg"></p>
+    </div>
+    <div class="top"><h2 style="margin:0">Ближайшие записи</h2>
+      <div class="row" style="flex:0 1 320px"><select id="fm"></select><button id="rf" type="button">Обновить</button></div></div>
+    <p class="msg err" id="berr"></p>
+    <div id="books"></div>
+  </div>
+
+  <div id="pc" style="display:none">
+    <p class="hint">Изменения применяются сразу после сохранения. Фото мастеров загружаются в репозиторий как m1.jpg, m2.jpg и так далее по номеру мастера.</p>
+    <div id="cfg"></div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+var W = 'https://barber-zayavki.kenny-ki.workers.dev';
+var tok = sessionStorage.getItem('tk') || '';
+var DAYS = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+var CFG = null, model = null, BOOKS = [], timer = null;
+function $(id){ return document.getElementById(id); }
+function el(t, c, x){ var n = document.createElement(t); if (c) n.className = c; if (x != null) n.textContent = x; return n; }
+
+function api(path, body){
+  var o = {headers: {'Authorization': 'Bearer ' + tok}};
+  if (body !== undefined){ o.method = 'POST'; o.headers['Content-Type'] = 'application/json'; o.body = JSON.stringify(body); }
+  return fetch(W + path, o).then(function(r){
+    return r.json().catch(function(){ return {}; }).then(function(j){
+      if (r.status === 401 && path !== '/admin/login'){ logout(); throw new Error('Войдите заново'); }
+      if (!r.ok) throw new Error(j.error || ('Ошибка ' + r.status));
+      return j;
+    });
+  });
+}
+function show(){
+  var on = !!tok;
+  $('login').style.display = on ? 'none' : 'block';
+  $('app').style.display = on ? 'block' : 'none';
+  if (on) init();
+}
+function logout(){ tok = ''; sessionStorage.removeItem('tk'); clearInterval(timer); show(); }
+$('out').onclick = logout;
+$('lf').onsubmit = function(e){
+  e.preventDefault(); $('lerr').textContent = '';
+  fetch(W + '/admin/login', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({password: $('pw').value})})
+    .then(function(r){ return r.json().then(function(j){ return {ok: r.ok, j: j}; }); })
+    .then(function(x){
+      if (!x.ok) throw new Error(x.j.error || 'Ошибка входа');
+      tok = x.j.token; sessionStorage.setItem('tk', tok); $('pw').value = ''; show();
+    })
+    .catch(function(err){ $('lerr').textContent = err.message; });
+};
+function tab(t){
+  $('pb').style.display = t === 'b' ? 'block' : 'none';
+  $('pc').style.display = t === 'c' ? 'block' : 'none';
+  $('tb').className = t === 'b' ? 'on' : ''; $('tc').className = t === 'c' ? 'on' : '';
+}
+$('tb').onclick = function(){ tab('b'); }; $('tc').onclick = function(){ tab('c'); };
+
+function init(){
+  fetch(W + '/config', {cache: 'no-cache'}).then(function(r){ return r.json(); }).then(function(c){
+    CFG = c; model = JSON.parse(JSON.stringify(c));
+    renderManual(); renderFilter(); renderCfg(); loadBooks();
+    clearInterval(timer); timer = setInterval(function(){ if (!document.hidden) loadBooks(); }, 30000);
+  }).catch(function(){ $('berr').textContent = 'Не удалось загрузить настройки. Проверьте прокладку в Cloudflare.'; });
+}
+function masterName(id){ var m = CFG.masters.filter(function(x){ return x.id === id; })[0]; return m ? m.name : id; }
+
+/* ---------- записи ---------- */
+function renderFilter(){
+  var s = $('fm'); s.innerHTML = '';
+  var o = el('option', '', 'Все мастера'); o.value = ''; s.appendChild(o);
+  CFG.masters.forEach(function(m){ var x = el('option', '', m.name); x.value = m.id; s.appendChild(x); });
+  s.onchange = renderBooks; $('rf').onclick = loadBooks;
+}
+function loadBooks(){
+  $('berr').textContent = '';
+  api('/admin/bookings').then(function(j){ BOOKS = j; renderBooks(); })
+    .catch(function(e){ $('berr').textContent = e.message; });
+}
+function renderBooks(){
+  var box = $('books'); box.innerHTML = '';
+  var f = $('fm').value, last = '', card = null, n = 0;
+  var today = new Date(); today.setDate(today.getDate() - 1);
+  BOOKS.filter(function(b){ return !f || b.master === f; }).forEach(function(b){
+    n++;
+    if (b.date !== last){
+      last = b.date;
+      var d = new Date(b.date + 'T12:00:00');
+      box.appendChild(el('div', 'days', d.toLocaleDateString('ru-RU', {weekday: 'long', day: 'numeric', month: 'long'})));
+      card = el('div', 'card'); box.appendChild(card);
+    }
+    var row = el('div', 'bk');
+    row.appendChild(el('div', 't', b.time || '—'));
+    var mid = el('div');
+    var l1 = el('div'); l1.appendChild(el('strong', '', b.name || 'Без имени'));
+    var bd = el('span', 'badge ' + (b.status === 'ok' ? 'okb' : 'new'), b.status === 'ok' ? 'Подтверждена' : 'Новая'); l1.appendChild(bd);
+    if (b.manual) l1.appendChild(el('span', 'badge', 'вручную'));
+    mid.appendChild(l1);
+    var l2 = el('small', '', masterName(b.master) + ', ' + (b.service || ''));
+    mid.appendChild(l2);
+    if (b.phone && b.phone !== '—'){
+      mid.appendChild(document.createElement('br'));
+      var a = el('a', '', b.phone); a.href = 'tel:' + b.phone.replace(/[^\d+]/g, ''); mid.appendChild(a);
+    }
+    row.appendChild(mid);
+    var ac = el('div', 'acts');
+    if (b.status !== 'ok'){ var ok = el('button', 'primary', 'Подтвердить'); ok.onclick = function(){ act(b.id, 'ok'); }; ac.appendChild(ok); }
+    var no = el('button', 'danger', 'Отменить');
+    no.onclick = function(){ if (confirm('Отменить запись «' + (b.name || '') + '» на ' + b.date + ' ' + (b.time || '') + '? Время освободится на сайте.')) act(b.id, 'no'); };
+    ac.appendChild(no); row.appendChild(ac); card.appendChild(row);
+  });
+  if (!n) box.appendChild(el('p', 'empty', 'Записей пока нет.'));
+}
+function act(id, a){ api('/admin/action', {id: id, act: a}).then(loadBooks).catch(function(e){ $('berr').textContent = e.message; }); }
+
+function renderManual(){
+  var f = $('mf'); f.innerHTML = '';
+  function sel(label, id, opts){ var l = el('label', 'f', label), s = el('select'); s.id = id;
+    opts.forEach(function(o){ var x = el('option', '', o[1]); x.value = o[0]; s.appendChild(x); }); l.appendChild(s); f.appendChild(l); }
+  sel('Мастер', 'mm', CFG.masters.map(function(m){ return [m.id, m.name]; }));
+  sel('Услуга', 'ms', CFG.services.map(function(s){ return [s.name, s.name + ' (' + s.minutes + ' мин)']; }));
+  var dl = el('label', 'f', 'Дата'), di = el('input'); di.type = 'date'; di.id = 'md'; di.required = true;
+  var t = new Date(); di.value = t.getFullYear() + '-' + ('0' + (t.getMonth() + 1)).slice(-2) + '-' + ('0' + t.getDate()).slice(-2);
+  dl.appendChild(di); f.appendChild(dl);
+  var times = []; for (var m = 8 * 60; m < 23 * 60; m += 30) times.push([('0' + Math.floor(m / 60)).slice(-2) + ':' + (m % 60 ? '30' : '00')]);
+  sel('Время', 'mt', times.map(function(x){ return [x[0], x[0]]; }));
+  var nl = el('label', 'f', 'Имя (необязательно)'), ni = el('input'); ni.id = 'mn'; nl.appendChild(ni); f.appendChild(nl);
+  var pl = el('label', 'f', 'Телефон (необязательно)'), pi = el('input'); pi.id = 'mp'; pi.type = 'tel'; pl.appendChild(pi); f.appendChild(pl);
+  var b = el('button', 'primary', 'Добавить'); b.type = 'submit'; f.appendChild(b);
+  f.onsubmit = function(e){
+    e.preventDefault(); var msg = $('mmsg'); msg.className = 'msg'; msg.textContent = '';
+    api('/admin/book', {master: $('mm').value, service: $('ms').value, date: $('md').value, time: $('mt').value, name: $('mn').value, phone: $('mp').value})
+      .then(function(){ msg.className = 'msg good'; msg.textContent = 'Запись добавлена, время занято.'; $('mn').value = ''; $('mp').value = ''; loadBooks(); })
+      .catch(function(err){ msg.className = 'msg err'; msg.textContent = err.message; });
+  };
+}
+
+/* ---------- настройки ---------- */
+function field(label, obj, key, type){
+  var l = el('label', 'f', label), i = el('input'); i.type = type || 'text';
+  i.value = obj[key] == null ? '' : obj[key];
+  i.oninput = function(){ obj[key] = type === 'number' ? Number(i.value) : i.value; };
+  l.appendChild(i); return l;
+}
+function renderCfg(){
+  var box = $('cfg'); box.innerHTML = '';
+  var g = el('div', 'card'); g.appendChild(el('h3', '', 'Общие'));
+  g.appendChild(field('Записываться на дней вперёд (1-120)', model, 'ahead', 'number')); box.appendChild(g);
+
+  var s = el('div', 'card'); s.appendChild(el('h3', '', 'Салон'));
+  var r1 = el('div', 'row'); ['name', 'address', 'note', 'phone'].forEach(function(k, i){
+    r1.appendChild(field(['Название (без слова «Барбершоп»)', 'Адрес', 'Как найти', 'Телефон'][i], model.shop, k)); });
+  s.appendChild(r1); s.appendChild(el('h3', '', 'Часы работы салона (текст на сайте)')).style.marginTop = '10px';
+  model.shop.hours.forEach(function(h, i){
+    var r = el('div', 'row'); r.style.marginBottom = '6px';
+    r.appendChild(field('Дни', h, 0)); r.appendChild(field('Часы', h, 1));
+    var d = el('button', 'danger', 'Убрать'); d.type = 'button'; d.onclick = function(){ model.shop.hours.splice(i, 1); renderCfg(); }; r.appendChild(d);
+    s.appendChild(r);
+  });
+  var ah = el('button', '', 'Добавить строку'); ah.type = 'button'; ah.onclick = function(){ model.shop.hours.push(['', '']); renderCfg(); }; s.appendChild(ah);
+  box.appendChild(s);
+
+  var sv = el('div', 'card'); sv.appendChild(el('h3', '', 'Услуги и цены'));
+  model.services.forEach(function(x, i){
+    var r = el('div', 'row'); r.style.marginBottom = '8px';
+    r.appendChild(field('Название', x, 'name')); r.appendChild(field('Описание', x, 'desc'));
+    r.appendChild(field('Минут', x, 'minutes', 'number')); r.appendChild(field('Цена, ₽', x, 'price', 'number'));
+    var d = el('button', 'danger', 'Убрать'); d.type = 'button'; d.onclick = function(){ model.services.splice(i, 1); renderCfg(); }; r.appendChild(d);
+    sv.appendChild(r);
+  });
+  var as = el('button', '', 'Добавить услугу'); as.type = 'button';
+  as.onclick = function(){ model.services.push({name: 'Новая услуга', desc: '', minutes: 30, price: 1000}); renderCfg(); }; sv.appendChild(as);
+  box.appendChild(sv);
+
+  var ms = el('div', 'card'); ms.appendChild(el('h3', '', 'Мастера и график'));
+  ms.appendChild(el('p', 'hint', 'Часы в формате 10:00-21:00 (шаг 30 минут). Пустое поле означает выходной. Мастер без рабочих дней скрыт на сайте. Удалить мастера нельзя, чтобы не потерять записи.'));
+  model.masters.forEach(function(m){
+    var c = el('div'); c.style.cssText = 'border-top:1px solid var(--line);padding-top:10px;margin-top:10px';
+    var r = el('div', 'row'); r.appendChild(field('Имя (' + m.id + ')', m, 'name')); r.appendChild(field('Стаж', m, 'exp')); c.appendChild(r);
+    var h = el('div', 'hours'); DAYS.forEach(function(d){ var l = field(d, m.hours, d); l.querySelector('input').placeholder = 'выходной'; h.appendChild(l); });
+    c.appendChild(h); ms.appendChild(c);
+  });
+  var am = el('button', '', 'Добавить мастера'); am.type = 'button'; am.style.marginTop = '12px';
+  am.onclick = function(){
+    var n = Math.max.apply(null, model.masters.map(function(m){ return +m.id.slice(1); })) + 1, hr = {};
+    DAYS.forEach(function(d){ hr[d] = ''; });
+    model.masters.push({id: 'm' + n, name: 'Новый мастер', exp: '1 год', hours: hr}); renderCfg();
+  };
+  ms.appendChild(am); box.appendChild(ms);
+
+  var sb = el('button', 'primary', 'Сохранить настройки'); sb.type = 'button';
+  var msg = el('p', 'msg');
+  sb.onclick = function(){
+    msg.className = 'msg'; msg.textContent = 'Сохраняем…';
+    api('/admin/config', {config: model}).then(function(){
+      CFG = JSON.parse(JSON.stringify(model)); msg.className = 'msg good'; msg.textContent = 'Сохранено. Сайт подхватит изменения в течение минуты.';
+      renderManual(); renderFilter(); renderBooks();
+    }).catch(function(e){ msg.className = 'msg err'; msg.textContent = e.message; });
+  };
+  box.appendChild(sb); box.appendChild(msg);
+}
+show();
+</script>
+</body>
+</html>
