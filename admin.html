@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Админка</title>
+<title>Панель администратора</title>
 <style>
 :root{--bg:#0B0B0B;--card:#141414;--ink:#F2EBDD;--muted:#A39B88;--line:#2C2820;--line2:#3A352A;--accent:#C9A24B;--on-accent:#0B0B0B;--red:#FF7B72;--ok:#58C488;--warn:#E0A040}
 *{box-sizing:border-box;margin:0}
@@ -63,7 +63,7 @@ input,select{border-radius:14px}
 <div class="wrap">
 
 <div id="login" style="display:none;max-width:360px;margin:60px auto">
-  <h1>Вход в админку</h1>
+  <h1>Вход в панель администратора</h1>
   <form id="lf" class="card">
     <label class="f">Пароль<input id="pw" type="password" autocomplete="current-password" required></label>
     <p class="msg err" id="lerr"></p>
@@ -74,7 +74,7 @@ input,select{border-radius:14px}
 
 <div id="app" style="display:none">
 <div class="layout">
-  <div class="top"><h1>Админка</h1><div class="row" style="flex:0 0 auto;gap:8px"><a class="btnlink" href="index.html">На сайт</a><button id="out" type="button">Выйти</button></div></div>
+  <div class="top"><h1>Панель администратора</h1><div class="row" style="flex:0 0 auto;gap:8px"><a class="btnlink" href="index.html">На сайт</a><button id="out" type="button">Выйти</button></div></div>
   <div class="tabs"><button type="button" id="tb" class="on">Записи</button><button type="button" id="tc">Настройки</button></div>
 
   <div id="pb">
@@ -123,7 +123,7 @@ function show(){
   $('app').style.display = on ? 'block' : 'none';
   if (on) init();
 }
-function logout(){ tok = ''; sessionStorage.removeItem('tk'); clearInterval(timer); document.title = 'Админка'; show(); }
+function logout(){ tok = ''; sessionStorage.removeItem('tk'); clearInterval(timer); document.title = 'Панель администратора'; show(); }
 $('out').onclick = logout;
 $('lf').onsubmit = function(e){
   e.preventDefault(); $('lerr').textContent = '';
@@ -166,7 +166,7 @@ function loadBooks(){
 function renderBooks(){
   var box = $('books'); box.innerHTML = '';
   var nw = BOOKS.filter(function(b){ return b.status !== 'ok'; }).length;
-  document.title = (nw ? '(' + nw + ') ' : '') + 'Админка';
+  document.title = (nw ? '(' + nw + ') ' : '') + 'Панель администратора';
   var f = $('fm').value, last = '', card = null, n = 0;
   var today = new Date(); today.setDate(today.getDate() - 1);
   BOOKS.filter(function(b){ return !f || b.master === f; }).forEach(function(b){
