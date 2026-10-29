@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta name="robots" content="noindex">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
@@ -147,7 +146,7 @@ function init(){
     CFG = c; model = JSON.parse(JSON.stringify(c));
     renderManual(); renderFilter(); renderCfg(); loadBooks();
     clearInterval(timer); timer = setInterval(function(){ if (!document.hidden) loadBooks(); }, 30000);
-  }).catch(function(){ $('berr').textContent = 'Не удалось загрузить настройки. Проверьте прокладку в Cloudflare.'; });
+  }).catch(function(){ $('berr').textContent = 'Не удалось загрузить настройки. Проверьте Worker в Cloudflare.'; });
 }
 function masterName(id){ var m = CFG.masters.filter(function(x){ return x.id === id; })[0]; return m ? m.name : id; }
 
